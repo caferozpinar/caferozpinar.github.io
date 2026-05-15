@@ -1,0 +1,409 @@
+# Kişisel Teknik Web Sitesi Planı
+
+## Genel Amaç
+
+İçerik odaklı, sade, hızlı ve okunabilir bir kişisel teknik web sitesi.
+
+Site:
+
+* kişisel portfolio gibi davranacak
+* aynı zamanda teknik blog görevi görecek
+* Google üzerinden teknik içeriklerle keşfedilebilir olacak
+* ancak proje ve kişisel alanlar daha çok doğrudan ziyaret eden kullanıcıya yönelik olacak
+
+Temel yaklaşım:
+
+> gösterişli tasarım yerine kaliteli teknik içerik.
+
+---
+
+# Site Yapısı
+
+```txt id="m6j9dt"
+/
+├── Ana Sayfa
+├── Hakkımda
+├── Projeler
+│   ├── Proje Detay Sayfaları
+│
+├── Blog
+│   ├── Teknik Yazılar
+│   ├── Araştırmalar
+│   ├── Deneyler
+│   └── Lab Notes
+│
+└── İletişim / Linkler
+```
+
+---
+
+# 1. Ana Sayfa
+
+## Amaç
+
+Kullanıcının:
+
+* kim olduğunu hızlıca anlaması
+* sitenin diğer bölümlerine yönelmesi
+
+## İçerik
+
+### Kısa Tanıtım
+
+Örnek yapı:
+
+> Bilgisayar mühendisliği öğrencisi.
+> Yazılım geliştirme, Linux, tersine mühendislik, gömülü sistemler ve teknik araştırmalar üzerine çalışıyorum.
+
+---
+
+### Yönlendirme Kartları
+
+* Projeler
+* Teknik Blog
+* Araştırmalar / Deneyler
+
+---
+
+### Son İçerikler
+
+* son 3 blog yazısı
+* son 2 proje
+
+---
+
+### Dış Linkler
+
+* GitHub
+* LinkedIn
+* Mail
+
+---
+
+# 2. Hakkımda Sayfası
+
+## Amaç
+
+Kısa ve teknik odaklı kişisel tanıtım.
+
+## İçerik
+
+* eğitim geçmişi
+* ilgi alanları
+* çalıştığın teknolojiler
+* yaklaşımın
+* kısa kariyer hedefleri
+
+Abartılı kişisel hikaye tarzına gerek yok.
+
+---
+
+# 3. Projeler Alanı
+
+## Amaç
+
+Gerçek teknik süreçleri göstermek.
+
+SEO ikinci planda.
+
+Bu alan:
+
+* seni teknik olarak inceleyen kişiler için
+* işe alımcılar için
+* teknik insanlarla paylaşım için
+
+tasarlanacak.
+
+---
+
+# Proje Sayfa Standardı
+
+Her proje için standart yapı:
+
+## 1. Proje Özeti
+
+Problem neydi?
+
+---
+
+## 2. Kullanılan Teknolojiler
+
+Örnek:
+
+* Python
+* C#
+* OpenCV
+* Unity
+* FPGA
+* Qt
+* Linux
+
+---
+
+## 3. Süreç
+
+En önemli bölüm.
+
+Şunlar anlatılmalı:
+
+* neden o teknoloji seçildi
+* hangi problemler çıktı
+* debugging süreci
+* performans sorunları
+* mimari kararlar
+* başarısız denemeler
+
+---
+
+## 4. Görseller / Videolar
+
+* ekran görüntüleri
+* terminal çıktıları
+* diyagramlar
+* demo videoları
+
+---
+
+## 5. Sonuç
+
+* ne öğrenildi
+* ne farklı yapılırdı
+* mevcut durum
+
+---
+
+# Ek Proje Alanı
+
+## “Yarım Kalan Projeler”
+
+Önerilen özel bölüm.
+
+İçerik:
+
+* neden yarım kaldı
+* teknik çıkmazlar
+* gelecekteki planlar
+
+Bu bölüm gerçek mühendislik hissi verir.
+
+---
+
+# 4. Blog Alanı
+
+## Amaç
+
+Google’dan organik erişim almak.
+
+SEO odaklı tek bölüm burası.
+
+---
+
+# Blog İçerik Türleri
+
+## Teknik Rehberler
+
+Örnek:
+
+* Arch Linux sorun çözümleri
+* Qt build problemleri
+* Unity mod kurulumları
+
+---
+
+## Araştırma Yazıları
+
+Örnek:
+
+* FPGA çalışma mantığı
+* UDP canlı yayın sistemleri
+* scheduler yapıları
+* reverse engineering notları
+
+---
+
+## Deney Yazıları
+
+Gerçek süreç anlatımları.
+
+Örnek:
+
+* belirli bir sistemin test edilmesi
+* performans deneyi
+* debugging süreci
+
+---
+
+## Lab Notes
+
+Daha kısa içerikler:
+
+* mini keşifler
+* kısa notlar
+* başarısız denemeler
+* küçük teknik bulgular
+
+---
+
+# Blog SEO Yapısı
+
+## URL Formatı
+
+```txt id="3n0u4v"
+/blog/qt-webengine-build-hatasi-arch-linux
+/blog/unitymodmanager-linux-kurulumu
+/blog/udp-live-stream-mimarisi
+```
+
+Türkçe karakter kullanılmayacak.
+
+---
+
+## Her Yazıda
+
+* başlık
+* tarih
+* kısa özet
+* etiketler
+* içerik
+* varsa GitHub linki
+
+---
+
+## SEO Gereksinimleri
+
+Her yazı için:
+
+* meta title
+* meta description
+* OpenGraph görseli
+
+---
+
+# 5. Tasarım Yaklaşımı
+
+## Genel Tasarım Felsefesi
+
+Minimal, sade, hızlı ve okunabilir.
+
+Amaç:
+
+* içerik tüketimi
+* teknik okunabilirlik
+
+---
+
+# Özellikle Kaçınılacaklar
+
+* ağır animasyonlar
+* scroll efektleri
+* parallax
+* glassmorphism
+* karmaşık UI
+* gereksiz hover efektleri
+* büyük geçiş animasyonları
+
+---
+
+# Görsel Stil
+
+## Renkler
+
+* açık arka plan
+* koyu gri metin
+* tek accent color
+
+---
+
+## Fontlar
+
+Öneri:
+
+* Inter → normal metin
+* JetBrains Mono → kod blokları
+
+---
+
+## İçerik Genişliği
+
+Çok geniş olmayacak.
+Okuma odaklı orta genişlik.
+
+---
+
+## Tema
+
+* açık tema
+* karanlık tema
+
+ikisi de olacak.
+
+---
+
+# 6. Teknik Yapı
+
+## Önerilen Teknoloji
+
+### Astro + Markdown
+
+## Neden?
+
+* çok hızlı
+* SEO güçlü
+* statik site
+* bakım kolay
+* içerik odaklı kullanım için ideal
+* markdown ile yazı yazmak rahat
+* düşük gereksiz JavaScript
+
+---
+
+# İçerik Yönetimi
+
+## Blog Yazıları
+
+Markdown tabanlı.
+
+Örnek:
+
+```txt id="ihsrt0"
+src/content/blog/
+```
+
+---
+
+## Projeler
+
+Ayrı collection yapısı:
+
+```txt id="4j8bg5"
+src/content/projects/
+```
+
+---
+
+# 7. Navigasyon Yapısı
+
+Önerilen navbar:
+
+```txt id="pt5k9n"
+Ana Sayfa
+Projeler
+Blog
+Hakkımda
+GitHub
+```
+
+Basit tutulacak.
+
+# 9. Genel Site Karakteri
+
+Sitenin hissi şu olmalı:
+
+* teknik
+* sade
+* gerçek deneyim odaklı
+* gösterişsiz
+* mühendislik yaklaşımı taşıyan
+* içerik merkezli
+
+Kurumsal startup landing page gibi görünmemeli.

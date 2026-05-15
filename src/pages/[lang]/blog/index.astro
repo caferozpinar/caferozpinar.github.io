@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { isLang, SUPPORTED_LANGS, ui } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+	return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+if (!isLang(lang)) return Astro.redirect('/tr/');
+const copy = ui[lang];
+
+const entries = (await getCollection('blog', ({ data }) => data.locale === lang && !data.draft)).sort(
+	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+---
+
+<Layout lang={lang} title={`${copy.blog.title} | ${copy.siteTitle}`} description={copy.blog.description}>
+	<section class="hero">
+		<h1>{copy.blog.title}</h1>
+		<p class="muted">{copy.blog.description}</p>
+	</section>
+
+	<section class="section">
+		<ul class="list">
+			{
+				entries.map((entry) => (
+					<li class="list-item">
+						<a href={`/${lang}/blog/${entry.id.replace(`${lang}/`, '')}/`}>
+							<strong>{entry.data.title}</strong>
+						</a>
+						<p class="muted">{entry.data.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Layout>

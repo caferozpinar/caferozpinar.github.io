@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { isLang, SUPPORTED_LANGS, ui } from '../../lib/i18n';
+
+export function getStaticPaths() {
+	return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+if (!isLang(lang)) return Astro.redirect('/tr/');
+const copy = ui[lang];
+---
+
+<Layout lang={lang} title={`${copy.contact.title} | ${copy.siteTitle}`} description={copy.contact.description}>
+	<section class="hero">
+		<h1>{copy.contact.title}</h1>
+		<p class="muted">{copy.contact.description}</p>
+	</section>
+	<section class="section grid">
+		<a class="card" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
+		<a class="card" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+		<a class="card" href="mailto:hello@example.com">hello@example.com</a>
+	</section>
+</Layout>

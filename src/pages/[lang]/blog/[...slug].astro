@@ -1,0 +1,49 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { isLang } from '../../../lib/i18n';
+
+export async function getStaticPaths() {
+	const entries = (await getCollection('blog', ({ data }) => !data.draft)).filter((entry) => {
+		const [lang, ...slugParts] = entry.id.split('/');
+		return isLang(lang) && slugParts.length > 0;
+	});
+
+	return entries.map((entry) => {
+		const [lang, ...slugParts] = entry.id.split('/');
+		return {
+			params: { lang, slug: slugParts.join('/') },
+		};
+	});
+}
+
+const lang = Astro.params.lang;
+const slug = Astro.params.slug;
+if (!isLang(lang) || !slug) return Astro.redirect('/tr/blog/');
+
+const entry = await getEntry('blog', `${lang}/${slug}`);
+if (!entry) return Astro.redirect(`/${lang}/blog/`);
+
+const { Content } = await render(entry);
+---
+
+<Layout lang={lang} title={entry.data.metaTitle} description={entry.data.metaDescription}>
+	<article class="hero">
+		<h1>{entry.data.title}</h1>
+		<p class="muted">{entry.data.description}</p>
+		<p class="muted">{entry.data.pubDate.toLocaleDateString(lang)}</p>
+	</article>
+
+	<section class="section card">
+		<Content />
+	</section>
+
+	{entry.data.githubUrl && (
+		<section class="section card">
+			<h2>{lang === 'tr' ? 'GitHub' : 'GitHub'}</h2>
+			<a href={entry.data.githubUrl} target="_blank" rel="noopener noreferrer">
+				{entry.data.githubUrl}
+			</a>
+		</section>
+	)}
+</Layout>

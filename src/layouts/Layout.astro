@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+import { switchLocalePath, type Lang, ui } from '../lib/i18n';
+
+interface Props {
+	lang: Lang;
+	title: string;
+	description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const copy = ui[lang];
+const trPath = switchLocalePath(Astro.url.pathname, 'tr');
+const enPath = switchLocalePath(Astro.url.pathname, 'en');
+---
+
+<!doctype html>
+<html lang={lang}>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="alternate" hreflang="tr" href={trPath} />
+		<link rel="alternate" hreflang="en" href={enPath} />
+		<link rel="alternate" hreflang="x-default" href="/tr/" />
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container topbar">
+				<a class="brand" href={`/${lang}/`}>{copy.siteTitle}</a>
+				<nav class="nav">
+					<a href={`/${lang}/`}>{copy.nav.home}</a>
+					<a href={`/${lang}/projects/`}>{copy.nav.projects}</a>
+					<a href={`/${lang}/blog/`}>{copy.nav.blog}</a>
+					<a href={`/${lang}/about/`}>{copy.nav.about}</a>
+					<a href={`/${lang}/contact/`}>{copy.nav.contact}</a>
+				</nav>
+				<div class="actions">
+					<div class="lang-switch">
+						<a class={lang === 'tr' ? 'active' : ''} href={trPath}>TR</a>
+						<span>/</span>
+						<a class={lang === 'en' ? 'active' : ''} href={enPath}>EN</a>
+					</div>
+					<button id="theme-toggle" type="button" aria-label={copy.toggleThemeAria}>🌙</button>
+				</div>
+			</div>
+		</header>
+		<main class="container main-content">
+			<slot />
+		</main>
+		<footer class="site-footer">
+			<div class="container">
+				<p>{copy.footer}</p>
+			</div>
+		</footer>
+		<script is:inline>
+			const root = document.documentElement;
+			const themeKey = 'theme-preference';
+			const storedTheme = localStorage.getItem(themeKey);
+			const preferredTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			const theme = storedTheme ?? preferredTheme;
+			root.dataset.theme = theme;
+			const button = document.getElementById('theme-toggle');
+			const updateIcon = () => {
+				if (!button) return;
+				button.textContent = root.dataset.theme === 'dark' ? '☀️' : '🌙';
+			};
+			updateIcon();
+			button?.addEventListener('click', () => {
+				const nextTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+				root.dataset.theme = nextTheme;
+				localStorage.setItem(themeKey, nextTheme);
+				updateIcon();
+			});
+		</script>
+	</body>
+</html>

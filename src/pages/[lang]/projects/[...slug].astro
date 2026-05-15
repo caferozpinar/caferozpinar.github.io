@@ -1,0 +1,53 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { isLang } from '../../../lib/i18n';
+
+export async function getStaticPaths() {
+	const entries = (await getCollection('projects', ({ data }) => !data.draft)).filter((entry) => {
+		const [lang, ...slugParts] = entry.id.split('/');
+		return isLang(lang) && slugParts.length > 0;
+	});
+
+	return entries.map((entry) => {
+		const [lang, ...slugParts] = entry.id.split('/');
+		return {
+			params: { lang, slug: slugParts.join('/') },
+		};
+	});
+}
+
+const lang = Astro.params.lang;
+const slug = Astro.params.slug;
+if (!isLang(lang) || !slug) return Astro.redirect('/tr/projects/');
+
+const entry = await getEntry('projects', `${lang}/${slug}`);
+if (!entry) return Astro.redirect(`/${lang}/projects/`);
+
+const { Content } = await render(entry);
+---
+
+<Layout lang={lang} title={`${entry.data.title} | Projects`} description={entry.data.description}>
+	<article class="hero">
+		<h1>{entry.data.title}</h1>
+		<p class="muted">{entry.data.description}</p>
+	</article>
+
+	<section class="section card">
+		<h2>{lang === 'tr' ? 'Kullanılan Teknolojiler' : 'Technologies'}</h2>
+		<p>{entry.data.technologies.join(', ')}</p>
+	</section>
+
+	<section class="section card">
+		<Content />
+	</section>
+
+	{entry.data.githubUrl && (
+		<section class="section card">
+			<h2>GitHub</h2>
+			<a href={entry.data.githubUrl} target="_blank" rel="noopener noreferrer">
+				{entry.data.githubUrl}
+			</a>
+		</section>
+	)}
+</Layout>

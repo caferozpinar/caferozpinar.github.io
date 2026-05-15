@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import { isLang, SUPPORTED_LANGS, ui } from '../../../lib/i18n';
+
+export function getStaticPaths() {
+	return SUPPORTED_LANGS.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang;
+if (!isLang(lang)) return Astro.redirect('/tr/');
+const copy = ui[lang];
+
+const entries = (await getCollection('projects', ({ data }) => data.locale === lang && !data.draft)).sort(
+	(a, b) => (b.data.updatedAt ?? b.data.pubDate).getTime() - (a.data.updatedAt ?? a.data.pubDate).getTime(),
+);
+---
+
+<Layout lang={lang} title={`${copy.projects.title} | ${copy.siteTitle}`} description={copy.projects.description}>
+	<section class="hero">
+		<h1>{copy.projects.title}</h1>
+		<p class="muted">{copy.projects.description}</p>
+	</section>
+
+	<section class="section">
+		<ul class="list">
+			{
+				entries.map((entry) => (
+					<li class="list-item">
+						<a href={`/${lang}/projects/${entry.id.replace(`${lang}/`, '')}/`}>
+							<strong>{entry.data.title}</strong>
+						</a>
+						<p class="muted">{entry.data.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Layout>
