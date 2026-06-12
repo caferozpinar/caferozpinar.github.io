@@ -1,5 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { isLang, SUPPORTED_LANGS, ui } from '../../lib/i18n';
 
@@ -11,81 +10,29 @@ const lang = Astro.params.lang;
 if (!isLang(lang)) return Astro.redirect('/en/');
 
 const copy = ui[lang];
-const blogEntries = (await getCollection('blog', ({ data }) => data.locale === lang && !data.draft))
-	.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-	.slice(0, 3)
-	.map((entry) => ({
-		title: entry.data.title,
-		description: entry.data.description,
-		slug: entry.id.replace(`${lang}/`, ''),
-	}));
-
-const projectEntries = (await getCollection('projects', ({ data }) => data.locale === lang && !data.draft))
-	.sort((a, b) => {
-		const aDate = (a.data.updatedAt ?? a.data.pubDate).getTime();
-		const bDate = (b.data.updatedAt ?? b.data.pubDate).getTime();
-		return bDate - aDate;
-	})
-	.slice(0, 2)
-	.map((entry) => ({
-		title: entry.data.title,
-		description: entry.data.description,
-		slug: entry.id.replace(`${lang}/`, ''),
-	}));
 ---
 
-<Layout lang={lang} title={copy.siteTitle} description={copy.home.intro}>
+<Layout lang={lang} title={copy.siteTitle} description={copy.about.description}>
 	<section class="hero">
-		<h1>{copy.home.heading}</h1>
-		<p class="muted">{copy.home.intro}</p>
+		<h1>Welcome to my website</h1>
+		<p class="muted">I'm a computer engineering student. Here's a little about me.</p>
 	</section>
 
-	<section class="section grid">
-		<a class="card" href={`/${lang}/projects/`}>
-			<h2>{copy.home.cards.projects}</h2>
-		</a>
-		<a class="card" href={`/${lang}/blog/`}>
-			<h2>{copy.home.cards.blog}</h2>
-		</a>
-		<a class="card" href={`/${lang}/blog/?type=lab-notes`}>
-			<h2>{copy.home.cards.lab}</h2>
-		</a>
-	</section>
-
-	<section class="section">
-		<h2>{copy.home.recentPosts}</h2>
-		<ul class="list">
-			{
-				blogEntries.map((post) => (
-					<li class="list-item">
-						<a href={`/${lang}/blog/${post.slug}/`}><strong>{post.title}</strong></a>
-						<p class="muted">{post.description}</p>
-					</li>
-				))
-			}
-		</ul>
-	</section>
-
-	<section class="section">
-		<h2>{copy.home.recentProjects}</h2>
-		<ul class="list">
-			{
-				projectEntries.map((project) => (
-					<li class="list-item">
-						<a href={`/${lang}/projects/${project.slug}/`}><strong>{project.title}</strong></a>
-						<p class="muted">{project.description}</p>
-					</li>
-				))
-			}
-		</ul>
-	</section>
-
-	<section class="section">
-		<h2>{copy.home.externalLinks}</h2>
-		<div class="grid">
-			<a class="card" href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a>
-			<a class="card" href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-			<a class="card" href="mailto:hello@example.com">Mail</a>
-		</div>
+	<section class="section card">
+		<p>
+			I've been entangled with computers since before I could even walk — my dad likes to tell how,
+			as a toddler who couldn't yet speak, I was already steering his game character around and
+			walking it straight into the monsters to get it killed. For reasons like that, computer games
+			and electronic devices have been part of my life for as long as I've been aware of myself.
+		</p>
+		<p>
+			My real journey into coding and software development, though, goes back to the early years of
+			high school — with love to my dear aunt, who encouraged me to attend a vocational high school.
+		</p>
+		<p>
+			My core interest is robotics and embedded software. Even though I've worked on and gained
+			experience across many other areas, this is without a doubt the field I enjoy the most and the
+			one I want to keep working in.
+		</p>
 	</section>
 </Layout>

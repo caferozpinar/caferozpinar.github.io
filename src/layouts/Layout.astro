@@ -30,11 +30,8 @@ const copy = ui[lang];
 			<div class="container topbar">
 				<a class="brand" href={`/${lang}/`}>{copy.siteTitle}</a>
 				<nav class="nav">
-					<a href={`/${lang}/`}>{copy.nav.home}</a>
 					<a href={`/${lang}/projects/`}>{copy.nav.projects}</a>
 					<a href={`/${lang}/blog/`}>{copy.nav.blog}</a>
-					<a href={`/${lang}/about/`}>{copy.nav.about}</a>
-					<a href={`/${lang}/contact/`}>{copy.nav.contact}</a>
 				</nav>
 				<div class="actions">
 					<button id="theme-toggle" type="button" aria-label={copy.toggleThemeAria}>🌙</button>
@@ -46,7 +43,11 @@ const copy = ui[lang];
 		</main>
 		<footer class="site-footer">
 			<div class="container">
-				<p>{copy.footer}</p>
+				<p><a href="mailto:ozpinarcafer54@gmail.com">ozpinarcafer54@gmail.com</a></p>
+				<p class="license-note">
+					Unless otherwise stated, all content shared on this site is licensed under
+					<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC 4.0</a>.
+				</p>
 			</div>
 		</footer>
 		<script is:inline>
