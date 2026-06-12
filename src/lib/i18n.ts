@@ -36,11 +36,11 @@ export const ui = {
 		},
 		projects: {
 			title: 'Projects',
-			description: 'Project logs focused on real technical process, architecture, and outcomes.',
+			description: "Here are some of the projects I've made.",
 		},
 		blog: {
 			title: 'Blog',
-			description: 'Technical guides, research notes, experiments, and lab notes.',
+			description: "Here are some of the things I've written.",
 		},
 		contact: {
 			title: 'Contact and Links',
