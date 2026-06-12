@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { switchLocalePath, type Lang, ui } from '../lib/i18n';
+import { type Lang, ui } from '../lib/i18n';
 
 interface Props {
 	lang: Lang;
@@ -10,8 +10,6 @@ interface Props {
 
 const { lang, title, description } = Astro.props;
 const copy = ui[lang];
-const trPath = switchLocalePath(Astro.url.pathname, 'tr');
-const enPath = switchLocalePath(Astro.url.pathname, 'en');
 ---
 
 <!doctype html>
@@ -24,9 +22,8 @@ const enPath = switchLocalePath(Astro.url.pathname, 'en');
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<meta name="description" content={description} />
-		<link rel="alternate" hreflang="tr" href={trPath} />
-		<link rel="alternate" hreflang="en" href={enPath} />
-		<link rel="alternate" hreflang="x-default" href="/tr/" />
+		<link rel="alternate" hreflang="en" href="/en/" />
+		<link rel="alternate" hreflang="x-default" href="/en/" />
 	</head>
 	<body>
 		<header class="site-header">
@@ -40,11 +37,6 @@ const enPath = switchLocalePath(Astro.url.pathname, 'en');
 					<a href={`/${lang}/contact/`}>{copy.nav.contact}</a>
 				</nav>
 				<div class="actions">
-					<div class="lang-switch">
-						<a class={lang === 'tr' ? 'active' : ''} href={trPath}>TR</a>
-						<span>/</span>
-						<a class={lang === 'en' ? 'active' : ''} href={enPath}>EN</a>
-					</div>
 					<button id="theme-toggle" type="button" aria-label={copy.toggleThemeAria}>🌙</button>
 				</div>
 			</div>

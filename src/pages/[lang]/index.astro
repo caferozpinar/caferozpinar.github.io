@@ -8,7 +8,7 @@ export function getStaticPaths() {
 }
 
 const lang = Astro.params.lang;
-if (!isLang(lang)) return Astro.redirect('/tr/');
+if (!isLang(lang)) return Astro.redirect('/en/');
 
 const copy = ui[lang];
 const blogEntries = (await getCollection('blog', ({ data }) => data.locale === lang && !data.draft))

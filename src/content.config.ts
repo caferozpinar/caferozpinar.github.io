@@ -4,7 +4,7 @@ import { glob } from 'astro/loaders';
 const blog = defineCollection({
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
 	schema: z.object({
-		locale: z.enum(['tr', 'en']),
+		locale: z.enum(['en']),
 		title: z.string(),
 		description: z.string(),
 		pubDate: z.coerce.date(),
@@ -20,7 +20,7 @@ const blog = defineCollection({
 const projects = defineCollection({
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/projects' }),
 	schema: z.object({
-		locale: z.enum(['tr', 'en']),
+		locale: z.enum(['en']),
 		title: z.string(),
 		description: z.string(),
 		pubDate: z.coerce.date(),

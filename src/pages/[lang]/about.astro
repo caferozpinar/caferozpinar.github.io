@@ -7,7 +7,7 @@ export function getStaticPaths() {
 }
 
 const lang = Astro.params.lang;
-if (!isLang(lang)) return Astro.redirect('/tr/');
+if (!isLang(lang)) return Astro.redirect('/en/');
 const copy = ui[lang];
 ---
 
@@ -18,29 +18,23 @@ const copy = ui[lang];
 	</section>
 
 	<section class="section card">
-		<h2>{lang === 'tr' ? 'Eğitim' : 'Education'}</h2>
+		<h2>Education</h2>
 		<p>
-			{lang === 'tr'
-				? 'Bilgisayar mühendisliği odağında eğitimimi sürdürürken yazılım, sistem ve düşük seviye konularda uygulamalı üretim yapıyorum.'
-				: 'I am studying computer engineering while building practical work across software, systems, and low-level topics.'}
+			I am studying computer engineering while building practical work across software, systems, and low-level topics.
 		</p>
 	</section>
 
 	<section class="section card">
-		<h2>{lang === 'tr' ? 'İlgi Alanları' : 'Interests'}</h2>
+		<h2>Interests</h2>
 		<p>
-			{lang === 'tr'
-				? 'Linux, tersine mühendislik, gömülü sistemler, ağ temelleri, performans analizi ve hata ayıklama süreçleri.'
-				: 'Linux, reverse engineering, embedded systems, networking fundamentals, performance analysis, and debugging workflows.'}
+			Linux, reverse engineering, embedded systems, networking fundamentals, performance analysis, and debugging workflows.
 		</p>
 	</section>
 
 	<section class="section card">
-		<h2>{lang === 'tr' ? 'Yaklaşım' : 'Approach'}</h2>
+		<h2>Approach</h2>
 		<p>
-			{lang === 'tr'
-				? 'Gösterişli anlatım yerine ölçülebilir teknik kararları, başarısız denemeleri ve çıkarımları paylaşırım.'
-				: 'I prioritize measurable technical decisions, failed attempts, and practical takeaways over flashy presentation.'}
+			I prioritize measurable technical decisions, failed attempts, and practical takeaways over flashy presentation.
 		</p>
 	</section>
 </Layout>

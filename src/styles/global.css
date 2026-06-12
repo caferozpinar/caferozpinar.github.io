@@ -82,21 +82,6 @@ a:hover {
 	gap: 0.8rem;
 }
 
-.lang-switch {
-	display: flex;
-	align-items: center;
-	gap: 0.35rem;
-}
-
-.lang-switch a {
-	color: var(--muted);
-	font-weight: 600;
-}
-
-.lang-switch a.active {
-	color: var(--accent);
-}
-
 #theme-toggle {
 	border: 1px solid var(--border);
 	background: var(--surface);

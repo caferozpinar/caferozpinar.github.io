@@ -19,7 +19,7 @@ export async function getStaticPaths() {
 
 const lang = Astro.params.lang;
 const slug = Astro.params.slug;
-if (!isLang(lang) || !slug) return Astro.redirect('/tr/blog/');
+if (!isLang(lang) || !slug) return Astro.redirect('/en/blog/');
 
 const entry = await getEntry('blog', `${lang}/${slug}`);
 if (!entry) return Astro.redirect(`/${lang}/blog/`);
@@ -40,7 +40,7 @@ const { Content } = await render(entry);
 
 	{entry.data.githubUrl && (
 		<section class="section card">
-			<h2>{lang === 'tr' ? 'GitHub' : 'GitHub'}</h2>
+			<h2>GitHub</h2>
 			<a href={entry.data.githubUrl} target="_blank" rel="noopener noreferrer">
 				{entry.data.githubUrl}
 			</a>
