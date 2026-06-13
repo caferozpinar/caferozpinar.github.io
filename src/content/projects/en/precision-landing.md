@@ -40,6 +40,11 @@ Altitude is read from LIDAR when in range and the barometer otherwise — used o
 - **Low-altitude oscillation.** The drone is large relative to the marker, so near the ground the whole vehicle responds to corrections — there's no isolation between camera and airframe, and wind gusts become control inputs. A horizontally stabilized gimbal loop would decouple this.
 - **Marker exit at close range.** When the drone is directly above and very close, parts of the pattern leave the frame and full-pattern recognition fails. A size-threshold fallback that tracks partial detections is the intended fix.
 
+## Special Thanks
+
+- [Sateallia](https://sateallia.org/) — for their support throughout the development process.
+- The author and supervisors of the [original thesis](https://avesis.marmara.edu.tr/yonetilen-tez/9449a7a0-ed57-47b5-b5e3-6ee68632d738/doner-kanatli-ihalar-icin-optik-ve-oruntu-tanima-tabanli-otonom-hassas-inis-sistemi-gelistirilmesi) — for the foundational work this project was built on top of.
+
 ## Access & License
 
 You can access the project's source code via [github.com/caferozpinar/precision-landing-drone](https://github.com/caferozpinar/precision-landing-drone).
