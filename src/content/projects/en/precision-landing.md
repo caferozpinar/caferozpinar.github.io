@@ -14,6 +14,8 @@ The goal of this project is to let an autonomous drone land precisely on a defin
 
 Started in 2022, the project was built on top of a master's thesis and reworked its detection and control approach end to end. You can access the thesis via [avesis.marmara.edu.tr](https://avesis.marmara.edu.tr/yonetilen-tez/9449a7a0-ed57-47b5-b5e3-6ee68632d738/doner-kanatli-ihalar-icin-optik-ve-oruntu-tanima-tabanli-otonom-hassas-inis-sistemi-gelistirilmesi) (last accessed: 12 June 2026).
 
+Although the project was started in 2022 and had nearly reached its end by 2024, I only began documenting it in June 2026. Before you make the mistake of asking why it took three years to build and four to document, you can read my [blog post](/en/blog/hardships-being-a-mikkabozu/) — which I'm not proud of.
+
 ## Features
 
 - **Real-time marker detection** from a Raspberry Pi camera filtered to 940 nm infrared, isolating the active LED marker from grass, gravel and other natural surfaces.
