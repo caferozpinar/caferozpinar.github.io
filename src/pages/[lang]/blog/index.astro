@@ -20,6 +20,7 @@ const entries = (await getCollection('blog', ({ data }) => data.locale === lang 
 	<section class="hero">
 		<h1>{copy.blog.title}</h1>
 		<p class="muted">{copy.blog.description}</p>
+		<p><a href={`/${lang}/rss.xml`}>RSS feed</a></p>
 	</section>
 
 	<section class="section card">
